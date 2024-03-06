@@ -20,6 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                
+                 error 'Intentional error in the pipeline'
                  echo 'Deploy by CS375 successful'
             }
         }
@@ -29,7 +30,7 @@ pipeline {
         failure {
             
                 echo 'Pipeline Failed'
-                error 'Intentional error in the pipeline'
+                
         }
     }
 }
