@@ -29,7 +29,7 @@ pipeline {
         failure {
             
                 echo 'Pipeline Failed'
-          
+                error 'Intentional error in the pipeline'
         }
     }
 }
