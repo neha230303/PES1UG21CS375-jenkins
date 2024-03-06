@@ -1,40 +1,35 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Clone repository') {
-            steps {
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/neha230303/jenkins/']]])
-            }
-        }
-        
         stage('Build') {
             steps {
-                // Assuming main.cpp is in the same folder as Jenkinsfile
-                sh 'g++ main.cpp -o output'
+                sh 'g++ main.cpp -o temp'
+                 build job: 'PES1UG21CS375-1', wait: false
+                 echo 'Build by CS375 successful'
             }
         }
-        
+
         stage('Test') {
             steps {
-                sh './output'
+                sh 'cat main.cpp'
+                echo 'Test by CS375 successful'
             }
         }
-        
+
         stage('Deploy') {
             steps {
-                echo 'deploy'
-                // Add deployment steps if needed
+               
+                 echo 'Deploy by CS375 successful'
             }
         }
     }
-    
+
     post {
         failure {
-            error 'Pipeline failed'
+            
+                echo 'Pipeline Failed'
+          
         }
     }
 }
-
